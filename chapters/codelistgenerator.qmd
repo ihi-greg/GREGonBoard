@@ -1,0 +1,128 @@
+---
+title: "Codelist Generator"
+---
+
+```{r setup, include=FALSE}
+library(webexercises)
+install.packages("CodelistGenerator")
+install.packages("omock")
+install.packages("duckdb")
+library(CohortConstructor)
+library(omock)
+library(duckdb)
+```
+
+## What is a concept set OMOP?
+
+A concept set is the fundamental vocabulary unit of any OMOP study. At its most basic, it is a named collection of **standard concept IDs** grouped together because they collectively represent a single clinical idea relevant to your research question. A concept set is not a list of ICD-10 codes, SNOMED terms, or RxNorm strings: it is a list of OMOP *standard* concept IDs, which are the normalised, source-agnostic representations that the ETL process maps all original source codes into.
+
+::: callout-important
+This distinction is critical! If your study site records a diagnosis using ICD-10 code E11.9 (*Type 2 diabetes mellitus without complications*), and another site uses the Read code C10F, both are (or should be) mapped during the ETL to the same OMOP standard concept ID for type 2 diabetes mellitus (SNOMED 201826). A concept set defined using that standard ID will therefore capture patients from both sites identically, regardless of the original coding system used!
+:::
+
+In practice, a concept set rarely consists of a single concept ID, not even multiple concept IDs from the same domain, like we saw in the [Phenotyping](phenotyping.qmd) and [ATLAS](atlas.qmd) sections. A concept set that is too broad will capture false-positive patients; one that is too narrow will miss true cases. Both forms of misclassification bias the results in different directions depending on the study design.
+
+You can build concept sets with the [CodelistGenerator](https://darwin-eu.github.io/CodelistGenerator/) package or with [ATLAS](atlas.qmd).
+
+> **In our example study:**
+>
+> [Objectives (as in [Study Protocol](study_protocol.qmd))]{.underline}
+>
+> > - Calculate the yearly prevalence and incidence proportion and density of GLP-1 receptor agonists given as a treatment to type 2 diabetes patients.
+> >
+> > - Characterise the users of each GLP-1 receptor agonists, including sociodemographic, clinical and large-scale characteristics.
+> >
+> > - Define the mean duration of treatment and treatment patterns, including switches, for patients with type 2 diabetes exposed to GLP-1 receptor agonists.
+> >
+> > - Assess the comparative safety of the different GLP-1 receptor agonists against acute pancreatitis outcomes.
+>
+> We need several concept sets: one concept set per each of the five **GLP-1 receptor agonist** agents of interest at the ingredient level with descendants, to ensure every branded formulation and dose strength is included. The **type 2 diabetes mellitus** concept set, in which we must include the T2DM concept and its descendants, but explicitly excluding any concepts that overlap with type 1 diabetes or secondary diabetes, to avoid misclassifying the population. And finally, the **acute pancreatitis** concept set, which must balance sensitivity (capturing all truly incident cases) against specificity (excluding chronic pancreatitis follow-up visits and historical coding).
+
+------------------------------------------------------------------------
+
+## Setup
+
+In this example, we better work with the Eunomia dataset as an example instead of the omock data, because the number and variety of drug exposures available in the synthetic data are more broad in the Eunomia dataset. You can also download example datasets from the `omock` package, like the `GiBleed` dataset. The documentation of the package is [here](https://ohdsi.github.io/omock/index.html).
+
+```{r setup-packages, message=FALSE, warning=FALSE}
+library(CDMConnector)
+library(CodelistGenerator)
+library(omopgenerics)
+library(omock)
+library(dplyr)
+library(duckdb)
+
+# With Eunomia
+requireEunomia()
+db <- DBI::dbConnect(duckdb::duckdb(), dbdir = eunomiaDir())
+cdm <- cdmFromCon(db, 
+                  cdmSchema = "main", 
+                  writeSchema = "main", 
+                  writePrefix = "greg_") # change the prefix at your convenience
+```
+
+::: callout-note
+If the CDM you use does not have the `concept id` that allow you to do the exercises, please, try another CDM or use another substance/disease!
+:::
+
+## Example pipeline
+
+In this tutorial we will provide an example on how to build the concept sets for our study with `CodelistGenerator`, but further documentation can be found in the [package documentation](https://darwin-eu.github.io/CodelistGenerator/), with all available functions in its [reference index](https://darwin-eu.github.io/CodelistGenerator/reference/index.html) and in [this other tutorial](https://dpa-pde-oxford.quarto.pub/codelistgenerator/#/title-slide).
+
+::: callout-tip
+Always check the [reference index](https://darwin-eu.github.io/CodelistGenerator/reference/index.html) of a package because there is where you will see all available functions of the package and really understand all its potential! Are you able to do the concept sets with R for our example study by yourself?
+:::
+
+```{r cg, eval=FALSE}
+
+semaglutide <- getDrugIngredientCodes(cdm = cdm,
+                                      doseForm = NULL, # Do you want a specific Dose Form?
+                                      doseUnit = NULL, # Do you want a specific Dose Unit?
+                                      routeCategory = NULL, # Do you want a specific route?
+                                      ingredientRange = c(1, Inf), # Do you want a specific combination of drugs or only single ingredients?
+                                      name = "semaglutide")
+
+t2dm <- getCandidateCodes(
+  cdm = cdm,
+  domains = "Condition", # add appropriate domains
+  includeDescendants = TRUE, # To add descendants or not is your choice!
+  includeAncestor = FALSE,
+  keywords = c("type 2 diabetis mellitus", "T2DM")
+)
+
+acute_pancreatitis <- getCandidateCodes(
+  cdm = cdm,
+  domains = "Condition", # add appropriate domains
+  includeDescendants = FALSE, # To add descendants or not is your choice!
+  includeAncestor = FALSE,
+  keywords = c("Acute pancreatitis")
+)
+
+```
+
+::: callout-warning
+**Always review** with a pharmacist/clinician/other professionals the concept sets that CodelistGenerator produced to make sure that your final list actually covers everything that is needed to define the concepts that you are trying to capture!
+:::
+
+```{r, results='asis', echo = FALSE}
+opts <- c(
+  "No, because we are defining conditions.",
+  answer = "It is not necessary, but we might make a more complete definition if we include other concepts like drug exposures or measurements that might be related to the conditions.",
+  "Yes, we should always include all domains because that is the way to make the most complete definition of all concepts."
+)
+
+cat("Do we need to include other domains in the T2DM or acute pancreatitis conditions concept sets?", longmcq(opts))
+```
+
+## Exporting codelists
+
+```{r export, eval=FALSE}
+# Export your codelists following this command
+directory <- "path_to_your_desired_directory"
+exportCodelist(semaglutide, directory, type = "csv")
+exportCodelist(t2dm, directory, type = "csv")
+exportCodelist(acute_pancreatitis, directory, type = "csv")
+
+# Disconnect
+dbDisconnect(con)
+```

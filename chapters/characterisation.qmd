@@ -1,0 +1,212 @@
+---
+title: "Characterisation"
+format: html
+---
+
+```{r setup, include=FALSE}
+library(webexercises)
+install.packages("DBI")
+install.packages("CDMConnector")
+install.packages("duckdb")
+install.packages("DrugUtilisation")
+install.packages("visOmopResults")
+install.packages("ggplot2")
+install.packages("CohortCharacteristics")
+install.packages("gt")
+library(CohortCharacteristics)
+library(DBI)
+library(gt)
+library(visOmopResults)
+library(CDMConnector)
+library(DrugUtilisation)
+library(duckdb)
+library(ggplot2)
+
+```
+
+## What is a characterisation study?
+
+A characterisation study describes *who is in a cohort*, it is a **descriptive** study. It includes cohort demographics, comorbidities, medications, procedures, and healthcare utilisation at and around the index date. It [does not make any causal claims]{.underline}. It answers the question: what does this population look like?
+
+Characterisation studies are used in three distinct contexts in pharmacoepidemiology:
+
+1.  **Disease natural history**: to describe the clinical profile of patients with a condition over time
+2.  **Treatment utilisation**: to describe who receives a drug, under what circumstances, and with what co-treatments
+3.  **Baseline comparability**: to compare cohorts prior to a causal analysis to assess confounding and guide propensity score specification
+
+> **In our study:** Before doing the comparative safety analysis of GLP-1 RA agents, we want and need to characterise all five exposure cohorts to understand their baseline profiles and identify potential confounders for acute pancreatitis.
+
+------------------------------------------------------------------------
+
+## Setup
+
+```{r setup-packages, message=FALSE, warning=FALSE}
+library(CohortCharacteristics)
+library(CohortConstructor)
+library(CodelistGenerator)
+library(CDMConnector)
+library(omopgenerics)
+library(omock)
+library(dplyr)
+library(duckdb)
+
+
+requireEunomia()
+db <- DBI::dbConnect(duckdb::duckdb(), dbdir = eunomiaDir())
+cdm <- cdmFromCon(db, 
+                  cdmSchema = "main", 
+                  writeSchema = "main", 
+                  writePrefix = "greg_")
+
+
+semaglutide <- getDrugIngredientCodes(cdm = cdm,
+                                      name = "semaglutide")
+
+t2dm <- getCandidateCodes(
+  cdm = cdm,
+  domains = "Condition",
+  includeDescendants = TRUE, 
+  includeAncestor = FALSE,
+  keywords = c("type 2 diabetis mellitus", "T2DM")
+)
+
+acute_pancreatitis <- getCandidateCodes(
+  cdm = cdm,
+  domains = "Condition", 
+  includeDescendants = FALSE,
+  includeAncestor = FALSE,
+  keywords = c("Acute pancreatitis")
+)
+
+# Build drug exposure cohorts (one per GLP-1 agent)
+cdm$semaglutide_cohort <- conceptCohort(
+  cdm         = cdm,
+  conceptSet  = semaglutide,
+  name        = "semaglutide_cohort",   # name of the cohort table in the CDM
+  exit = "event_end_date",
+  overlap = "merge")
+
+
+# Build condition cohorts
+cdm$t2dm_cohort <- conceptCohort(
+  cdm         = cdm,
+  conceptSet  = t2dm,
+  name        = "t2dm_cohort"
+)
+
+cdm$ap_cohort <- conceptCohort(
+  cdm         = cdm,
+  conceptSet  = acute_pancreatitis,
+  name        = "ap_cohort"
+)
+
+cdm <- bind(cdm$semaglutide_cohort, cdm$t2dm_cohort, cdm$ap_cohort, name = "study_cohorts")
+
+```
+
+::: callout-note
+If the CDM you use does not have the `concept id` that allow you to do the exercises, please, try another CDM or use another substance/disease!
+:::
+
+------------------------------------------------------------------------
+
+## Example pipeline
+
+In this tutorial we will provide an example on how to do a descriptive/characterisation study with `CohortCharacteristics`, but further documentation can be found in the [package documentation](https://darwin-eu.github.io/CohortCharacteristics/), with all available functions in its [reference index](https://darwin-eu.github.io/CohortCharacteristics/reference/index.html) and in [this other tutorial](https://dpa-pde-oxford.quarto.pub/cohortcharacteristics-team-training/#/title-slide).
+
+### Cohort counts
+
+```{r counts, message=FALSE, warning=FALSE, eval=FALSE}
+counts <- summariseCohortCount(cdm$study_cohorts)
+tableCohortCount(counts)
+```
+
+### Basic demographics
+
+```{r demographics, message=FALSE, warning=FALSE, eval=FALSE}
+resultsBlc <- summariseCharacteristics(
+  cohort   = cdm$study_cohorts,
+  ageGroup = list(c(18, 44), c(45, 64), c(65, 150))
+)
+```
+
+### Large-scale characteristics
+
+Large-scale characterisation reports the prevalence of *every* domain (condition, drug, procedure...) in a specified time window around the index date. This produces potentially thousands of features. We can also look for the most common ones in our cohorts!
+
+```{r lsc, message=FALSE, warning=FALSE, eval=FALSE}
+resultsLsc <- cdm$study_cohorts |>
+  summariseLargeScaleCharacteristics(
+    window           = list(c(-365, -1), c(0, 0), c(1, 30)), # We usually add multiple time windows in which to assess ls characteristics
+    eventInWindow    = c("condition_occurrence", "drug_exposure"), # You can add all desired domains
+    minimumFrequency = 0.01
+  )
+```
+
+::: callout-note
+## Why those time windows?
+
+- `c(-365, -1)` or the year prior to index: captures baseline comorbidities and prior medications (covariates for confounding adjustment)
+- `c(0, 0)` or the index date itself: captures what was coded at the time of drug initiation (the index event breakdown)
+- `c(1, 30)` or the 30 days after index: captures early treatment patterns and complications (not used for baseline characterisation, but useful for drug utilisation analyses)
+:::
+
+### Comparing cohorts: the standardised mean difference
+
+When the goal is to compare two cohorts (as in our head-to-head GLP-1 RA safety study), we compute the standardised mean difference (SMD) [@Nguyen2024] for each covariate. Any covariate with SMD $\ge$ 0.1 is a candidate for inclusion in the propensity score model. We can do this with the CohortCharacterisation package using the compared large scale characterisation.
+
+```{r smd, message=FALSE, warning=FALSE, eval=FALSE}
+resultsSmd <- resultsLsc |>
+  plotComparedLargeScaleCharacteristics(
+    reference = "semaglutide",
+    colour    = "variable_level"
+  )
+```
+
+Let's do a quick check now!
+
+```{r q1, echo=F, , results='asis'}
+cat(
+  "**Quick check:** You are characterising the five GLP-1 RA cohorts. You find that 28% of exenatide users have a prior record of cholelithiasis compared to 11% of semaglutide users. This is an SMD of 0.47. What should you do?\n\n",
+mcq(c(
+    "Borderline, can be ignored if the outcome is not hepatobiliary",
+    "Borderline, adjust in the outcome model only",
+    answer = "SLarge imbalance, include cholelithiasis in the propensity score model since it is a strong confounder for AP",
+    "Large imbalance, exclude all patients with cholelithiasis from both cohorts"
+  )), "\n\n")
+```
+
+`r hide("Explanation")` The SMD ≈ 0.47, this is a large imbalance. Since cholelithiasis (gallstones) is the most common cause of acute pancreatitis worldwide, this is a strong confounder, because not only it is differentially distributed between the cohorts but also directly causes the outcome. It must be included in the propensity score model. Excluding patients with cholelithiasis would change the target population and invalidate generalisation of the results. `r unhide()`
+
+### Cohort overlap
+
+```{r overlap, message=FALSE, warning=FALSE, eval=FALSE}
+resultsOverlap <- summariseCohortOverlap(cdm$study_cohorts)
+```
+
+------------------------------------------------------------------------
+
+## Exporting the results
+
+You can export a summarised result with all the objects that you created from your different calculations, and then read that file in a Shiny App to show the results. The package for that is [OmopViewer](https://ohdsi.github.io/OmopViewer/) but [visOmopResults](https://darwin-eu.github.io/visOmopResults/) and each package own functions allow for it too.
+
+```{r export, eval=FALSE}
+# Suppress small cell counts before sharing
+minCellCount <- 5 
+
+exportSummarisedResult(
+  resultsBlc,
+  resultsLsc,
+  resultsSmd,
+  resultsOverlap,
+  minCellCount = minCellCount,
+  path = here("Results"),
+  fileName = "GregonBoard_charact_{cdm_name}_{date}.csv"
+)
+
+```
+
+## Bibliography
+
+::: {#refs}
+:::

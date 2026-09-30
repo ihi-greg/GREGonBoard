@@ -1,0 +1,263 @@
+---
+title: "Incidence-Prevalence"
+format: html
+---
+
+```{r setup, include=FALSE}
+library(webexercises)
+install.packages("IncidencePrevalence")
+library(IncidencePrevalence)
+library(CDMConnector)
+library(omopgenerics)
+library(omock)
+library(dplyr)
+library(duckdb)
+```
+
+## Incidence and prevalence
+
+Before running any code, it is worth being precise about what these two measures actually mean, because they answer to different questions.
+
+**Prevalence** answers: *what proportion of the population has this condition at a given point in time (or during a given period)?* It captures both old and new cases.
+
+**Incidence** answers: *at what rate are new cases occurring in the at-risk population?* It captures only new events in people who did not previously have the condition.
+
+| Measure | Formula | Answers |
+|------------------------|------------------------|------------------------|
+| Point prevalence | Cases at time t / Population at time t | How common is this condition right now? |
+| Period prevalence | Cases during period / Population during period | How common was it over this period? |
+| Incidence proportion | New cases / At-risk persons | What is the risk of developing it? |
+| Incidence rate | New cases / Person-time at risk | At what rate does it occur? |
+
+Sometimes we do not have the population at risk and our denominator changes to the overall population. Let's think of the following example, in which we have a population with an underlying disease (population 1), a target population eligible to receive treatment (population 2) and an actually treated population (population 3). Incidence and prevalence would be as follows:
+
+![Figure. Prevalence calculation in our example.](/images/prevalence.png){fig-align="center"}
+
+![Figure. Incidence calculation in our example.](/images/incidence.png)
+
+::: callout-note
+Incidence rates are the most relevant measure for safety signal quantification and for risk-benefit assessments, they can be directly compared across populations and time periods. Prevalence is more relevant for burden-of-disease and healthcare resource utilisation analyses.
+:::
+
+In this chapter we will work with the [IncidencePrevalence package](https://darwin-eu.github.io/IncidencePrevalence/). The workflow always has three steps:
+
+```         
+1. Generate the DENOMINATOR cohort (who is at risk and when?)
+        ↓
+2. Generate the OUTCOME cohort (who had the event?)
+        ↓
+3. Estimate incidence / prevalence using these two cohorts
+```
+
+------------------------------------------------------------------------
+
+## Setup
+
+```{r setup-packages, message=FALSE, warning=FALSE}
+library(IncidencePrevalence)
+library(CohortConstructor)
+library(CodelistGenerator)
+library(CDMConnector)
+library(omopgenerics)
+library(omock)
+library(dplyr)
+library(duckdb)
+
+
+requireEunomia()
+db <- DBI::dbConnect(duckdb::duckdb(), dbdir = eunomiaDir())
+cdm <- cdmFromCon(db, 
+                  cdmSchema = "main", 
+                  writeSchema = "main", 
+                  writePrefix = "greg_")
+
+
+semaglutide <- getDrugIngredientCodes(cdm = cdm,
+                                      name = "semaglutide")
+
+t2dm <- getCandidateCodes(
+  cdm = cdm,
+  domains = "Condition",
+  includeDescendants = TRUE, 
+  includeAncestor = FALSE,
+  keywords = c("type 2 diabetis mellitus", "T2DM")
+)
+
+acute_pancreatitis <- getCandidateCodes(
+  cdm = cdm,
+  domains = "Condition", 
+  includeDescendants = FALSE,
+  includeAncestor = FALSE,
+  keywords = c("Acute pancreatitis")
+)
+
+# Build drug exposure cohorts (one per GLP-1 agent)
+cdm$semaglutide_cohort <- conceptCohort(
+  cdm         = cdm,
+  conceptSet  = semaglutide,
+  name        = "semaglutide_cohort",   # name of the cohort table in the CDM
+  exit = "event_end_date",
+  overlap = "merge")
+
+
+# Build condition cohorts
+cdm$t2dm_cohort <- conceptCohort(
+  cdm         = cdm,
+  conceptSet  = t2dm,
+  name        = "t2dm_cohort"
+)
+
+cdm$ap_cohort <- conceptCohort(
+  cdm         = cdm,
+  conceptSet  = acute_pancreatitis,
+  name        = "ap_cohort"
+)
+cdm <- bind(cdm$semaglutide_cohort, cdm$t2dm_cohort, cdm$ap_cohort, name = "study_cohorts")
+```
+
+------------------------------------------------------------------------
+
+## Example pipeline
+
+In this tutorial we will provide an example on how to calculate incidence and prevalence with `IncidencePrevalence`, but further documentation can be found in the [package documentation](https://darwin-eu.github.io/IncidencePrevalence/), with all available functions in its [reference index](https://darwin-eu.github.io/IncidencePrevalence/reference/index.html) and in [this other tutorial](https://dpa-pde-oxford.quarto.pub/incidenceprevalence-c13b/#/title-slide).
+
+### Step 1: Define the denominator population
+
+The denominator defines who is at risk and for how long. You can restrict by age, sex, and a calendar study period. An "overall population" denominator for our study would be, if we wanted to stratify incidence and prevalence by age group (18-44, 45-64, 65+) and sex.:
+
+```{r ovall_denominator, message=FALSE, warning=FALSE}
+cdm <- generateDenominatorCohortSet(
+  cdm                    = cdm,
+  name                   = "denominator",
+  cohortDateRange        = as.Date(c("2023-01-01", "2025-12-31")),
+  ageGroup               = list(c(18, 44), c(45, 64), c(65, 150)),
+  sex                    = c("Male", "Female", "Both"),
+  daysPriorObservation   = 365 # coherent with the numerator cohort
+)
+```
+
+::: callout-note
+In our study, the denominator for the acute pancreatitis incidence analysis would be the type 2 diabetes population taking a GLP-1 RA, if we consider "population at risk".
+:::
+
+```{r q1, echo=FALSE, results='asis'}
+cat(
+  "**Quick check:** Why do we require 365 days of prior observation in the denominator?\n\n",
+  mcq(c(
+    "To ensure patients have had time to develop the outcome",
+    answer = "To exclude patients who may have had the outcome before the study period (washout), ensuring we only capture truly new (incident) cases",
+    "Because the IncidencePrevalence package requires it",
+    "To match the follow-up period of 365 days"
+  )), "\n\n"
+)
+```
+
+`r hide("Explanation")` The washout period (`daysPriorObservation`) ensures that patients entering the denominator did not already have the outcome before their observation window began. We want to discard them from the denominator because we could not include those patients in the numerator neither. `r unhide()`
+
+### Step 2: Define the outcome cohort
+
+The outcome cohort identifies who experienced the event. For incidence, we need the **first** event per person during the at-risk period. For prevalence, all events are valid.
+
+> In our example, this would be the ap_cohort we already created.
+
+### Step 3: Estimate incidence rates
+
+```{r incidence, message=FALSE, warning=FALSE, eval = F}
+inc <- estimateIncidence(
+  cdm             = cdm,
+  denominatorTable = "denominator", # or t2dm + each GLP1-RA
+  outcomeTable     = "ap_cohort",
+  interval         = "years",       # estimate per calendar year
+  outcomeWashout   = 365,           # exclude patients with prior outcome
+  repeatedEvents   = FALSE          # first event only per person
+)
+```
+
+::: callout-note
+**Our study:** The expected crude incidence of acute pancreatitis in a T2DM population is approximately 3-6 per 1,000 person-years [@GonzalezPerez2010]. If your estimated rate is an order of magnitude higher, something happened. The most probable reason is outcome misclassification, most likely because your outcome concept set is too broad and is capturing chronic pancreatitis follow-up visits or history codes. If it is zero or near-zero, check that your outcome concept IDs are correctly mapped in the OMOP vocabulary of your specific database.
+:::
+
+```{r q2, echo=FALSE, results='asis'}
+cat(
+  "**Quick check:** Your incidence rate estimate for acute pancreatitis is",
+  "45 per 1,000 person-years in the T2DM population.",
+  "The published literature reports 3-6 per 1,000. What should you do first?\n\n",
+  mcq(c(
+    "Accept the result, your database may have a sicker population",
+    "Talk to the data providers to see if they have an issue with the data",
+    answer = "Investigate the outcome concept set, you are likely capturing chronic pancreatitis, history codes, or outpatient follow-up visits as incident events",
+    "Check your code, maybe you are multiplying by 10 where you should not!"
+  )), "\n\n"
+)
+```
+
+`r hide("Explanation")` An incidence rate 10-20× higher than published estimates is almost always a signal of outcome phenotype misclassification. The most common cause in OMOP databases is that the concept set captures too many non-incident events. For example, SNOMED descendants that include chronic pancreatitis, billing codes used for follow-up visits after a previously diagnosed episode, or codes used as rule-outs rather than confirmed diagnoses. The correct response is to review your concept set and restrict your events. `r unhide()`
+
+::: callout-tip
+Do not hesitate to contact the data providers and even discuss results with them if they do not make sense! First, make sure that it is not a coding and/or phenotyping error, but if results do not make sense after careful revision of everything that could have gone wrong with your data analysis pipeline, perhaps something happens with the data that you are not considering! Not that it is wrong, or wrongly mapped. Perhaps using a system which you had not considered!
+:::
+
+### Step 4: Estimate prevalence
+
+```{r prevalence, message=FALSE, warning=FALSE, eval = F}
+prev <- estimatePeriodPrevalence(
+  cdm              = cdm,
+  denominatorTable = "denominator", # or t2dm + each GLP1-RA
+  outcomeTable     = "ap_cohort",
+  interval         = "years",
+  fullContribution = FALSE   # patients contribute partial periods at edges
+)
+
+pointPrev <- estimatePointPrevalence(
+  cdm              = cdm,
+  denominatorTable = "denominator", # or t2dm + each GLP1-RA
+  outcomeTable     = "ap_cohort",
+  interval         = "years"
+)
+```
+
+::: callout-tip
+Use `estimatePointPrevalence()` when you want a snapshot on a specific date (useful for burden-of-disease estimates). Use `estimatePeriodPrevalence()` when you want to capture anyone with the condition during a time window (useful for healthcare utilisation studies).
+:::
+
+#### Stratification and subgroup analyses
+
+To obtain results stratified by age or sex, you only need to include them in your cohort definitions. To include stratification by an additional group, you can add this variable to your functions: `strata = list()` listing the groups by which you want to stratify (and you should have defined them previously).
+
+```{r q3, echo=FALSE, results='asis'}
+cat(
+  "**Quick check:** The way we have written it in code, are we stratifying incidence and prevalence by age and sex?",
+  mcq(c(
+    "Yes, but only incidence.",
+    "Yes, but only period prevalence.",
+    answer = "Yes because by design it is included.",
+    "No, we would need to specify it."
+  )), "\n\n"
+)
+```
+
+------------------------------------------------------------------------
+
+## Exporting the results
+
+You can export a summarised result with all the objects that you created from your different calculations, and then read that file in a Shiny App to show the results. The package for that is [OmopViewer](https://ohdsi.github.io/OmopViewer/) but [visOmopResults](https://darwin-eu.github.io/visOmopResults/) and each package own functions allow for it too.
+
+```{r export, eval=FALSE, eval = F}
+# Suppress small cell counts before sharing
+minCellCount <- 5 
+
+exportSummarisedResult(
+  inc,
+  prev,
+  pointPrev,
+  minCellCount = minCellCount,
+  path = here("Results"),
+  fileName = "GregonBoard_incprev_{cdm_name}_{date}.csv"
+)
+
+```
+
+## Bibliography
+
+::: {#refs}
+:::

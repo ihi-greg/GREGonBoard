@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Study Protocol – GREGonBoard</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-01763844bc9bc1821803bb04be9e46d6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-aa08168d7980b36a5f69588f3806bed5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-01763844bc9bc1821803bb04be9e46d6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e7162c50a2d709cf38f4a6a09bf97341.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9df6dd32941c160f1606efc3996d7bbf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-e7162c50a2d709cf38f4a6a09bf97341.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../include/webex.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">GREGonBoard</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/study_outline.html">Planning a study</a></li><li class="breadcrumb-item"><a href="../chapters/study_protocol.html">Study Protocol</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GREGonBoard</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/OHDSI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OHDSI Journey</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/OMOPCDM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OMOP CDM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/WhyGREG.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why GREG?</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Planning a study</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/study_outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Study Outline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/study_protocol.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Study Protocol</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Feasibility assessment</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/standard_procedure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standard Procedure</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Design &amp; Execution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/phenotyping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phenotyping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/atlas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ATLAS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/using_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CDM using R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/codelistgenerator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Codelist Generator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cohortconstruction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cohort Construction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/incidenceprevalence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Incidence-Prevalence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/characterisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Characterisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/drugutilisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Drug Utilisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/effectiveness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Estimating effectiveness</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reporting a study</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/study_report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Study Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#first-steps" id="toc-first-steps" class="nav-link active" data-scroll-target="#first-steps"><span class="header-section-number">1</span> First steps</a></li>
+  <li><a href="#sections-of-the-template" id="toc-sections-of-the-template" class="nav-link" data-scroll-target="#sections-of-the-template"><span class="header-section-number">2</span> Sections of the template</a>
+  <ul class="collapse">
+  <li><a href="#study-title-1" id="toc-study-title-1" class="nav-link" data-scroll-target="#study-title-1"><span class="header-section-number">2.1</span> Study title</a></li>
+  <li><a href="#description-of-the-study-team-1" id="toc-description-of-the-study-team-1" class="nav-link" data-scroll-target="#description-of-the-study-team-1"><span class="header-section-number">2.2</span> Description of the study team</a></li>
+  <li><a href="#timelines-1" id="toc-timelines-1" class="nav-link" data-scroll-target="#timelines-1"><span class="header-section-number">2.3</span> Milestones</a></li>
+  <li><a href="#rationale-and-background-1" id="toc-rationale-and-background-1" class="nav-link" data-scroll-target="#rationale-and-background-1"><span class="header-section-number">2.4</span> Rationale and background</a></li>
+  <li><a href="#research-question-and-objectives-1" id="toc-research-question-and-objectives-1" class="nav-link" data-scroll-target="#research-question-and-objectives-1"><span class="header-section-number">2.5</span> Research question and objectives</a></li>
+  <li><a href="#research-methods-1" id="toc-research-methods-1" class="nav-link" data-scroll-target="#research-methods-1"><span class="header-section-number">2.6</span> Research methods</a></li>
+  </ul></li>
+  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography"><span class="header-section-number">3</span> Bibliography</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/study_outline.html">Planning a study</a></li><li class="breadcrumb-item"><a href="../chapters/study_protocol.html">Study Protocol</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Study Protocol</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="first-steps" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="first-steps"><span class="header-section-number">1</span> First steps</h2>
+<p>Congratulations! You are part of GREG and you are participating in an ongoing study. Now, you need to present the study protocol. <em>What should you do?</em></p>
+<ol type="1">
+<li><p>First of all, go back to your study outline. You do not start from scratch!</p></li>
+<li><p>Find <a href="../templates/study_protocol_template.docx">here</a> the template of the study protocol. You should fill in this template and submit it both to GREG for feedback and to the <a href="https://catalogues.ema.europa.eu/catalogue-rwd-studies">catalogue of the EMA</a> once it is the final version of the protocol.</p></li>
+<li><p>You can find the ENCePP guidelines on how to write a study protocol <a href="https://encepp.europa.eu/encepp-toolkit/methodological-guide/chapter-3-development-study-protocol_en">here</a>. This includes the HARmonized Protocol Template to Enhance Reproducibility (HARPER) framework.</p></li>
+</ol>
+</section>
+<section id="sections-of-the-template" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sections-of-the-template"><span class="header-section-number">2</span> Sections of the template</h2>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>1. <a href="#study-title-1">Study title</a>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>2. <a href="#description-of-the-study-team-1">Description of the study team</a>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>3. <a href="#study_outline.qmd">Abstract</a>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>4. <a href="#study_outline.qmd">Ammendments and updates</a>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>5. <a href="#timelines-1">Milestones</a>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>6. <a href="#rationale-and-background-1">Rationale and background</a>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>7. <a href="#research-question-and-objectives-1">Research question and objectives</a>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>8. <a href="#research-methods-1">Research methods</a>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><a href="#study-design">Study design</a></p></li>
+<li><p><a href="#study-period">Study period</a></p></li>
+<li><p><a href="#study-population">Study population</a></p></li>
+<li><p><a href="#follow-up">Follow-up</a></p></li>
+<li><p><a href="#variables">Variables</a></p></li>
+<li><p><a href="#sample-size">Sample size</a></p></li>
+<li><p><a href="#analysis">Analysis</a></p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>9. Data management
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>10. Quality control
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>11. Strengths and limitations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>12. Governance board aspects
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>13. Plans for disseminating and communicating study results
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>14. Other aspects
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>15. References
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<section id="study-title-1" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="study-title-1"><span class="header-section-number">2.1</span> Study title</h3>
+<p>Please, think of a title for your study. Let it start by “GREG -” to make sure that the study is related to the project. As much as possible, a good title should contain at least five elements: the target <strong>P</strong>opulation, the <strong>I</strong>ntervention or <strong>E</strong>xposure of interest, the <strong>C</strong>omparator, the <strong>O</strong>utcome of interest, and the <strong>T</strong>ime frame over which the outcome is assessed, commonly referred to by the acronym <strong>PICO(T)</strong>. In the context of observational research, the intervention component is replaced by exposure, giving rise to the <a href="https://doi.org/10.1016/j.envint.2018.07.015"><strong>PECO framework</strong></a>, because pharmacoepidemiological studies are <strong>non-interventional</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Be concise! A short but informative title is better than a very long and specific title!</p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Let’s consider the title of our example study “Use of GLP-1 receptor agonists and risk of acute pancreatitis in type 2 diabetes patients”. Is this a good study title? Does it follow the PECO framework? Let’s see:</p>
+</blockquote>
+<div class="webex-check webex-box">
+<p>Population: <select class="webex-select"><option value="blank"></option><option value="answer">TRUE</option><option value="">FALSE</option></select> Exposure: <select class="webex-select"><option value="blank"></option><option value="answer">TRUE</option><option value="">FALSE</option></select> Comparator: <select class="webex-select"><option value="blank"></option><option value="">TRUE</option><option value="answer">FALSE</option></select> Outcome: <select class="webex-select"><option value="blank"></option><option value="answer">TRUE</option><option value="">FALSE</option></select> Time: <select class="webex-select"><option value="blank"></option><option value="">TRUE</option><option value="answer">FALSE</option></select></p>
+</div>
+<blockquote class="blockquote">
+<p>Can you think of a better research question fulfilling all PECO(T) requirements?</p>
+</blockquote>
+</section>
+<section id="description-of-the-study-team-1" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="description-of-the-study-team-1"><span class="header-section-number">2.2</span> Description of the study team</h3>
+<p>Who is going to work on this project with you? What will be their responsibilities? Which institution do they work for?</p>
+</section>
+<section id="timelines-1" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="timelines-1"><span class="header-section-number">2.3</span> Milestones</h3>
+<p>At this stage, the milestones/timelines section is merely speculative. Nevertheless, having to think of realistic timelines for your study will make you more conscious about the amount of work that each stage will take. Remember, that not only you will need to work on the protocol, the analytical code for the study or writing the study report, but you will also need other members of your team to review your work, and each data partner (DP) to individually run the study with the code you (or the Data Scientist of your team) provided. This can take a different amount of time depending on the scale of the database of each DP, as well as the time they can dedicate to the project. Please, consider this when setting your timelines.</p>
+</section>
+<section id="rationale-and-background-1" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="rationale-and-background-1"><span class="header-section-number">2.4</span> Rationale and background</h3>
+<p>This section sets the theoretical background to your study. For the abstract or study outline, please, write a short description of the subject of your study, if possible, <strong>not longer than one page</strong>. For your protocol, add all necessary information, although try to keep it concise and practical. Add relevant references, state-of-the-art research outcomes and a justification of the election of your topic.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Think of it as: “What makes your study relevant so that we need to select it as a Use Case for GREG? What makes it suitable for GREG?”</p>
+</div>
+</div>
+</section>
+<section id="research-question-and-objectives-1" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="research-question-and-objectives-1"><span class="header-section-number">2.5</span> Research question and objectives</h3>
+<p>A good research question is the foundation of your study. Your RWE will answer only to that research question.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is not the same to ask: “What is the effectiveness of the flu vaccine?” Than to ask: “What is the effectiveness of the inhaled versus the injected flu vaccine against hospital admission due to flu-related bronchitis in healthy children without prior flu or bronchiolitis diagnosis?”</p>
+<p>The more precise we are, the less room we leave for misleading interpretation of our study results.</p>
+</div>
+</div>
+<p>A structured research question should follow the <a href="#0"><strong>PECO framework</strong></a>. The <a href="#0"><strong>ENCePP Guide on Methodological Standards in Pharmacoepidemiology</strong></a> explicitly states that the research question must be clearly defined before the study protocol can be developed, and the ENCePP Checklist for Study Protocols requires researchers to justify why the study is conducted, what specific objectives it addresses, and whether those objectives are formulated in a way that is answerable with the available data<span class="citation" data-cites="ENCePP2024"><sup><a href="#ref-ENCePP2024" role="doc-biblioref">1</a></sup></span></p>
+<p>In recent years, two complementary frameworks have substantially extended the PICO(T) approach:</p>
+<ol type="1">
+<li><p>The <strong>estimand framework</strong>, formalised in the <a href="https://doi.org/10.1136/bmj-2023-076316">ICH E9(R1)</a> addendum published in 2019. It introduces the concept of <em>estimand</em>: a precise definition of the treatment effect of interest. An estimand is defined by <u>five attributes</u>: the target population, the treatment or exposure, the variable (endpoint), the population-level summary measure, and the strategies for handling intercurrent events. A good estimand ensures alignment among the study objective, design, data collection, analysis, and interpretation<span class="citation" data-cites="ICH2021"><sup><a href="#ref-ICH2021" role="doc-biblioref">2</a></sup></span>. It is also the basis of any properly formulated causal research question.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Intercurrent events are events that occur after treatment initiation that affect either the interpretation or the existence of the measurements associated with the clinical question of interest<span class="citation" data-cites="Lynggaard2024"><sup><a href="#ref-Lynggaard2024" role="doc-biblioref">3</a></sup></span>.</p>
+</div>
+</div></li>
+<li><p>The <strong>target trial emulation</strong>, introduced by Hernán and Robins in 2016<span class="citation" data-cites="Hernan2016"><sup><a href="#ref-Hernan2016" role="doc-biblioref">4</a></sup></span>. This framework serves as a guide to best design and analyse observational studies whilst preventing the most common biases, and starts by clearly defining a causal question about an intervention, specifying the protocol of the hypothetical trial that would answer it, and explaining how the observational data will be used to emulate it<span class="citation" data-cites="Hernan2016 Hernan2022"><sup><a href="#ref-Hernan2016" role="doc-biblioref">4</a>,<a href="#ref-Hernan2022" role="doc-biblioref">5</a></sup></span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Read carefully the <a href="https://doi.org/10.1136/bmj-2023-076316">ICH E9(R1)</a> addendum before designing your study! It might raise questions about what you plan to do that you have not considered before.</p>
+</div>
+</div></li>
+</ol>
+<p>Regarding study objectives, make sure that they have a logical order (from general to specific). They need to outline exactly what your research will achieve. Start each with a strong action verb (e.g., <em>evaluate, analyze, compare, determine</em>) and follow the <a href="https://www.ucop.edu/local-human-resources/_files/performance-appraisal/How+to+write+SMART+Goals+v2.pdf"><strong>SMART Framework</strong></a>:</p>
+<ul>
+<li><p><strong>S</strong>pecific: Clearly state what will be done.</p></li>
+<li><p><strong>M</strong>easurable: Identify the main variables you will q uantify.</p></li>
+<li><p><strong>A</strong>chievable: Ensure you can do it with available time and resources.</p></li>
+<li><p><strong>R</strong>elevant: Map directly to your overall research question.</p></li>
+<li><p><strong>T</strong>ime-bound: Define the timeframe for the study.</p></li>
+</ul>
+What would be a good research question for our study? (Choose the most complete)
+<div id="radio_OMSNRLNMBU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OMSNRLNMBU" value=""> <span>Among adult patients with type 2 diabetes initiating antidiabetic therapy, what is the time to first acute pancreatitis event comparing new users of GLP-1 receptor agonists versus new users of DPP-4 inhibitors or SGLT-2 inhibitors, using real-world data standardised to the OMOP Common Data Model?</span></label><label><input type="radio" autocomplete="off" name="radio_OMSNRLNMBU" value="answer"> <span>Among adult patients with type 2 diabetes initiating any GLP-1 receptor agonist for the first time and no prior pancreatitis-related outcome, what is the comparative risk of acute pancreatitis event comparing semaglutide, liraglutide, dulaglutide, exenatide, and tirzepatide, using each agent as reference in pairwise comparisons, where treatment discontinuation, switching to another GLP-1, or initiation of a concomitant pancreatitis-associated drug are handled as censoring events under a hypothetical strategy?</span></label><label><input type="radio" autocomplete="off" name="radio_OMSNRLNMBU" value=""> <span>Among adult patients with type 2 diabetes with no prior GLP-1 receptor agonist use, what is the risk of having acute pancreatitis in GLP-1 receptor agonist, over a follow-up period of up to 3 years, under a while-on-treatment strategy?</span></label>
+</div>
+<blockquote class="blockquote">
+<p>Notice that the research question makes a big difference on the type of study that you will end up conducting. Are you comparing GLP-1 receptor agonists among them? Or with DPP-4 or SGLT-2 inhibitors? What will be your censoring events? Are you considering new use? Nevertheless, there is not just one good answer, if complete and rigorous, several research questions might be appropriate but they would respond to different study objectives.</p>
+</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An observational study needs to answer a clinically relevant question. Think of it as an answer to a question that your doctor might ask themselves before prescribing you any treatment: among the treatment options I can give to this patient, which is the safest for them?</p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>As for the objectives, in our study they could be:</p>
+<ul>
+<li><p>Calculate the yearly prevalence and incidence proportion and density of GLP-1 receptor agonists given as a treatment to type 2 diabetes patients.</p></li>
+<li><p>Characterise the users of each GLP-1 receptor agonists, including sociodemographic, clinical and large-scale characteristics.</p></li>
+<li><p>Define the mean duration of treatment and treatment patterns, including switches, for patients with type 2 diabetes exposed to GLP-1 receptor agonists.</p></li>
+<li><p>Assess the comparative safety of the different GLP-1 receptor agonists against acute pancreatitis outcomes.</p></li>
+</ul>
+</blockquote>
+</section>
+<section id="research-methods-1" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="research-methods-1"><span class="header-section-number">2.6</span> Research methods</h3>
+<p>In this section, you need to describe the methodology that you will do to successfully pursue your study. Our aim is to do open, transparent, reproducible science. Be specific, be rigorous, do not let anything for imagination or speculation.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When writing the methods section, try to think “Would someone from a different study team be able to execute the same study as my team?”</p>
+</div>
+</div>
+<section id="study-design" class="level4" data-link="Study design" data-number="2.6.1">
+<h4 data-link="Study design" data-number="2.6.1" class="anchored" data-anchor-id="study-design"><span class="header-section-number">2.6.1</span> Study design</h4>
+<p>To decide your study design, you need to bear in mind your study objectives. Do you want to do a characterisation study? Drug utilisation? Incidence/prevalence? Or are you going to answer a causal question? All of these might need different study designs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/study_designs.png" class="img-fluid figure-img"></p>
+<figcaption>Figure. Scheme of some study designs.</figcaption>
+</figure>
+</div>
+<p>In the <a href="https://encepp.europa.eu/encepp-toolkit/methodological-guide_en"><strong>ENCePP Guide on Methodological Standards in Pharmacoepidemiology</strong></a> you will find a description of the most common study designs used to generate RWE. Most of the times, you will do a cohort study design for characterisation, and an active comparator, target trial emulation for causal inference. Nevertheless, even these designs can be further specified, for example explicitly stating whether you will use a new-user or prevalent-user approach.</p>
+<blockquote class="blockquote">
+<p>For our GLP-1 comparative risk of pancreatitis study, a good study design could be:<br>
+- New user cohort study (for characterisation)</p>
+<p>- New user, active comparator, target trial emulation study (for safety assessment)</p>
+</blockquote>
+</section>
+<section id="study-period" class="level4" data-link="Study period" data-number="2.6.2">
+<h4 data-link="Study period" data-number="2.6.2" class="anchored" data-anchor-id="study-period"><span class="header-section-number">2.6.2</span> Study period</h4>
+<p>The study period is the time between the start of your study and its end. Avoid unnecessary large study periods: what length is sufficient to ascertain your hypothesis? Also, take into account the dates in which the different products you study (or the outcomes) started to be available. For example, it does not make sense to make a study of causal inference related to COVID-19 with study period starting before 2019.</p>
+<blockquote class="blockquote">
+<p>For our GLP-1 comparative risk of pancreatitis study, we will be comparing semaglutide, liraglutide, dulaglutide, exenatide, and tirzepatide among each other. Tirzepatide was only approved by the EMA on September 2022. Therefore, a good study period could be January 1st, 2023 to December 31st, 2025 or the most recent data available in each database.</p>
+</blockquote>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This would, however, raise a limitation: you can only say that you studied the comparative safety of GLP-1 use for 3 years. You cannot state that your study results are applicable to a longer-term safety.</p>
+</div>
+</div>
+</section>
+<section id="study-population" class="level4" data-number="2.6.3">
+<h4 data-number="2.6.3" class="anchored" data-anchor-id="study-population"><span class="header-section-number">2.6.3</span> Study population</h4>
+<p>In this section, consider all relevant sociodemographic and clinical characteristics of your population. Their age, sex, whether you want to study a particular socioeconomic stratum or ethnic, whether you need your population to have a previous condition or not.</p>
+<blockquote class="blockquote">
+<p>In our example, we will need two populations:</p>
+<p><strong>General population (Population A):</strong> All adults (≥18 years) with a recorded diagnosis of type 2 diabetes who are actively registered in the participating database and eligible for observation during each calendar year of the study period (1st January 2023 to 31st December 2025, or the latest data available). Eligible individuals must have at least 365 days of continuous observation before index date. Individuals must have continuous database enrollment or observation for the period required to contribute person-time. This is the population “at risk” of receiving GLP-1 receptor agonists, it serves as the denominator for annual prevalence and incidence estimates of GLP-1 receptor agonist use. If they receive the treatment, they are censored from this population, but for each type of GLP-1. For example, if they receive semaglutide, they are no longer in population A for incidence or prevalence of semaglutide calculation, but they remain in population A for dulaglutide-related calculations.</p>
+<p><strong>New-user population (Population B):</strong> Adults (≥18 years) with type 2 diabetes who initiate treatment with one of the study GLP-1 receptor agonists (semaglutide, liraglutide, dulaglutide, exenatide, or tirzepatide) for the first time during the study period. Eligible individuals must have at least 365 days of continuous observation before treatment initiation, no dispensing or prescription of any GLP-1 receptor agonist during the washout period, and no recorded history of acute pancreatitis or related outcomes before the index date. The date of first dispensing or prescription defines cohort entry (index date). Patients contribute only their first eligible treatment episode for each type of GLP-1 receptor agonist. That means, that the same patient might be part of the semaglutide and liraglutide cohorts, but just once for each cohort.</p>
+</blockquote>
+</section>
+<section id="follow-up" class="level4" data-number="2.6.4">
+<h4 data-number="2.6.4" class="anchored" data-anchor-id="follow-up"><span class="header-section-number">2.6.4</span> Follow-up</h4>
+<p>To define the follow-up of your population of study, the HARPER guidelines are a basic. You must define the index date of your study without introducing immortal time bias, and set your censoring events wisely. HARPER diagrams help with visualisation. Have a look at: <a href="https://doi.org/10.1002/pds.5507" class="uri">https://doi.org/10.1002/pds.5507</a></p>
+<p>Each of your populations might have different follow-up definitions.</p>
+<blockquote class="blockquote">
+<p>In our example, there are two different follow-up definitions, one for each population:</p>
+<ul>
+<li><strong>Population A</strong>: they will contribute observation time from the date they satisfy the eligibility criteria (diagnosis of type 2 diabetes, age ≥18 years, prior observation of 365 days) within the study period. Follow-up will continue until the earliest of death, transfer out of the database, end of continuous observation, or prescription of a GLP-1 receptor agonist. Individuals may contribute person-time to more than one calendar year provided they remain eligible. This dynamic cohort will serve as the denominator for estimating the annual prevalence and incidence of GLP-1 receptor agonist use.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/HARPER_A.png" class="img-fluid figure-img"></p>
+<figcaption>Figure. HARPER diagram for population A in our example.</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Population B</strong>: they will contribute observation time beginning on the index date, defined as the date of the first prescription or dispensing of a GLP-1 receptor agonist (semaglutide, liraglutide, dulaglutide, exenatide, or tirzepatide) during the study period (1st January 2023 to 31st December 2025, or the latest available date in each database), after satisfying all eligibility criteria. Participants will be followed from treatment initiation until the earliest occurrence of an acute pancreatitis event (study outcome), discontinuation of the index GLP-1 receptor agonist, switching to another GLP-1 receptor agonist, initiation of a concomitant medication associated with pancreatitis risk, death, loss to follow-up or end of data availability, or end of the study period, whichever occurs first. Treatment discontinuation, switching to another GLP-1 receptor agonist, and initiation of a concomitant pancreatitis-associated medication will be treated as censoring events.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/HARPER_B.png" class="img-fluid figure-img"></p>
+<figcaption>Figure. HARPER diagram for population B in our example.</figcaption>
+</figure>
+</div></li>
+</ul>
+</blockquote>
+</section>
+<section id="variables" class="level4" data-link="Variables" data-number="2.6.5">
+<h4 data-link="Variables" data-number="2.6.5" class="anchored" data-anchor-id="variables"><span class="header-section-number">2.6.5</span> Variables</h4>
+<p>You should consider all the variables that are relevant to define the eligibility of your population (age, sex, year, region, clinical diagnoses, measurements…), as well as those that are relevant for the study (exposure, outcomes, confounders, stratification variables…). You can introduce covariables, like concomitant medication or comorbidities. It can be a good approach to search for the published literature or similar studies in the <a href="https://catalogues.ema.europa.eu/catalogue-rwd-studies">EMA Catalogue</a> to explore the variables that have been previously used in related analyses.</p>
+</section>
+<section id="sample-size" class="level4" data-link="Sample size" data-number="2.6.6">
+<h4 data-link="Sample size" data-number="2.6.6" class="anchored" data-anchor-id="sample-size"><span class="header-section-number">2.6.6</span> Sample size</h4>
+<p>If you are doing a characterisation study, sample size calculation is not applicable. You can say that you are using information from all patients available in the corresponding databases, and provide some counts on the number of patients of each database, if relevant. For effectiveness and safety studies, you should provide a calculation of estimated sample size needed to observe an effect.</p>
+<p>To do a sample size calculation, you need to define your statistical test, set your acceptable error margins (typically α=0.05, power =0.80), and estimate the effect size (the difference you expect to find between cohorts). These parameters are then plugged into formulas or <a href="https://powerandsamplesize.com/">software</a> to determine the required participant count. Some of these variables might be obtained from published literature, like previous incidence or prevalence of disease before intervention (e.g.&nbsp;for vaccines) or the expected effect of the intervention or treatment (from clinical studies or previous observational studies).</p>
+</section>
+<section id="analysis" class="level4" data-link="Analysis" data-number="2.6.7">
+<h4 data-link="Analysis" data-number="2.6.7" class="anchored" data-anchor-id="analysis"><span class="header-section-number">2.6.7</span> Analysis</h4>
+<p>This is the core of the study for the data analyst of your team. Defining well the analysis section will ascertain reproducibility of the study if the analytical code is lost for whatever reason. In the <strong>Study design &amp; execution</strong> section of this tutorial, you will find examples of implementation of different types of studies.</p>
+<p>Nevertheless, for further information, you can look at:</p>
+<ul>
+<li><p><a href="https://ohdsi.github.io/TheBookOfOhdsi/">The Book of OHDSI</a></p></li>
+<li><p><a href="https://miguelhernan.org/whatifbook">What if…?</a></p></li>
+<li><p><a href="https://www.academia.edu/109155833/Developing_a_Protocol_for_Observational_Comparative_Effectiveness_Research_A_Users_Guide">Developing a Protocol for Observational Comparative Effectiveness Research: A User’s Guide</a></p></li>
+<li><p><a href="https://github.com/orgs/OHDSI/repositories">OHDSI R packages</a></p></li>
+<li><p><a href="https://github.com/orgs/darwin-eu/repositories?type=all">DARWIN EU packages</a></p></li>
+</ul>
+<p>But also check the tutorials in:</p>
+<ul>
+<li><p><a href="https://academy.ehden.eu/">EHDEN Academy</a></p></li>
+<li><p><a href="https://www.ohdsi.org/tutorials/">OHDSI tutorials</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="bibliography" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="bibliography"><span class="header-section-number">3</span> Bibliography</h2>
+<div id="refs" class="references csl-bib-body" role="list">
+<div id="ref-ENCePP2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">European Network of Centres for Pharmacoepidemiology and Pharmacovigilance. <em><span class="nocase">ENCePP Checklist for Study Protocols (Revision 4)</span></em>. EMA; 2024. <a href="https://www.encepp.eu/standards_and_guidances/checkListGuidance.shtml">https://www.encepp.eu/standards_and_guidances/checkListGuidance.shtml.</a></div>
+</div>
+<div id="ref-ICH2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">International Council for Harmonisation. <em><span class="nocase">ICH E9(R1) Addendum on Estimands and Sensitivity Analysis in Clinical Trials</span></em>. EMA; 2021. <a href="https://www.ema.europa.eu/en/ich-e9-r1-statistical-principles-clinical-trials">https://www.ema.europa.eu/en/ich-e9-r1-statistical-principles-clinical-trials.</a></div>
+</div>
+<div id="ref-Lynggaard2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline"><span class="nocase">Lynggaard H et al.</span> The estimands framework: A primer on the <span>ICH E9(R1)</span> addendum. <em>BMJ Open</em>. 2024. doi:<a href="https://doi.org/10.1136/bmjopen-2023-075358">10.1136/bmjopen-2023-075358</a></div>
+</div>
+<div id="ref-Hernan2016" class="csl-entry" role="listitem">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Hernán MA, Sauer BC, Hernández-Díaz S, Platt R, Shrier I. Specifying a target trial prevents immortal time bias and other self-inflicted injuries in observational analyses. <em>Journal of Clinical Epidemiology</em>. 2016;79:70-75. doi:<a href="https://doi.org/10.1016/j.jclinepi.2016.02.012">10.1016/j.jclinepi.2016.02.012</a></div>
+</div>
+<div id="ref-Hernan2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Hernán MA, Wang W, Leaf DE. Target trial emulation: A framework for causal inference from observational data. <em>JAMA</em>. 2022;328(24):2446-2447. doi:<a href="https://doi.org/10.1001/jama.2022.21383">10.1001/jama.2022.21383</a></div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

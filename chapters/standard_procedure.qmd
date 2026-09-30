@@ -1,0 +1,42 @@
+---
+title: "Standard Procedure"
+format: html
+---
+
+## Feasibility steps in GREG
+
+The feasibility Standard Operational Procedure (SOP) can be found [here](https://mieur.sharepoint.com/:f:/s/GREGEU/IgAY7eH-BKb4Qrbt8YBuAjvWAVre3jgg9BU4Vw8Bz4ppbpg?e=G3OBzf). This figure summarises the procedure:
+
+![Overview of the use case selection + feasibility assessment procedure within the IHI-GREG project](/images/feasibility.png){fig-align="center"}
+
+In particular:
+
+1.  The feasibility of your UC proposal will already be explored during the UCPTF (use case prioritization task force). After a pre-selection of potentially proritized UC, from your study outline, WP4 and WP5 will gather the relevant information for a first-step **feasibility exploration of resources and methods** (in collaboration with WP6) to inform the UCPTF before proceeding with a UC.
+
+2.  Once a UC is prioritised, the [first step]{.underline} of the current data feasibility assessment, named **landscaping**, includes:
+
+    - **List of characteristics of the data sources involved in the UC**: time window, healthcare setting, etc.
+
+    - **Codelist with 40 concept ids**: an Excel file with \~40 *concept id*s that cover relevant elements of the UC. Tools that will help you build this codelist are [Athena](https://athena.ohdsi.org/search-terms/start) and [ATLAS](https://atlas-demo.ohdsi.org/#/home), that will be better explained in the [ATLAS section](atlas.qmd).
+
+    - With this, the UC lead will be provided with the patient counts for this \~40 concept ids in the data sources meeting the required characteristics. From this set of results, the UC lead may select up to 10 data partners to be invited for the core data feasibility assessment. Data sources could be either part of the GREG Consortium, the [EHDEN Foundation network](https://portal.ehden.eu/), or other relevant data holders.
+
+3.  The UC lead will provide **up to 5 different phenotypes** for the core data feasibility assessment (see [Phenotyping section](#0)). [Please, notice that these phenotypes do not necessarily need to be the same as the cohorts used for the study, even though the more similar the better.]{.underline} These *up to* 5 phenotypes will be run in the available data sources, selected from landscaping. Patient counts for all the phenotypes will be reported along with attrition tables.
+
+    - Rules:
+
+      - You can combine concept sets.
+
+      - Outcomes cannot be included.
+
+      - They can be adapted to the study requirements within a reasonable limit (remember that this is a exploratory step, not a characterisation).
+
+    - Once the UC lead has the feasibility report, up to 5 data sources can be selected to be invited for the study. This is the step when data partners are hired to join the project.
+
+      ::: callout-note
+      Please, provide a rule or quantitative way (score) for deciding your final 10 databases. You will need to justify your choices.
+      :::
+
+::: callout-tip
+You can always ask WP6 (Lucia C. and Lucia B.) to assist you with your choices or phenotype development!
+:::
